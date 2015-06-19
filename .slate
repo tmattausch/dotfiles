@@ -1,0 +1,110 @@
+#configs
+config defaultToCurrentScreen true
+config resizePercentOf screenSize
+config secondsBetweenRepeat 0.1
+config checkDefaultsOnLoad true
+config focusCheckWidthMax 3000
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+config layoutFocusOnActivate true
+
+
+alias 2000 ctrl;alt;cmd
+
+
+alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
+alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
+alias rightmost     move screenOriginX+screenSizeX*0.4;screenOriginY  screenSizeX*0.6;screenSizeY
+alias rightless     move screenOriginX+screenSizeX*0.6;screenOriginY  screenSizeX*0.4;screenSizeY
+alias leftmost      move screenOriginX;screenOriginY                  screenSizeX*0.6;screenSizeY
+alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
+
+alias uphalf        move screenOriginX;screenOriginY                  screenSizeX;screenSizeY/2
+alias upmost        move screenOriginX;screenOriginY                  screenSizeX;screenSizeY*0.6
+alias upless        move screenOriginX;screenOriginY                  screenSizeX;screenSizeY*0.4
+alias upleft        corner top-left resize:screenSizeX/2;screenSizeY/2
+alias upright       corner top-right resize:screenSizeX/2;screenSizeY/2
+alias upleftless    corner top-left resize:screenSizeX/2.515;screenSizeY/2
+alias uprightless   corner top-right resize:screenSizeX/2.515;screenSizeY/2
+
+alias downhalf      move screenOriginX;screenSizeY/2+screenOriginY    screenSizeX;screenSizeY/2
+alias downmost      move screenOriginX;screenSizeY*0.4+screenOriginY  screenSizeX;screenSizeY*0.6
+alias downless      move screenOriginX;screenSizeY*0.6+screenOriginY  screenSizeX;screenSizeY*0.4
+alias downleft      corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias downright     corner bottom-right resize:screenSizeX/2;screenSizeY/2
+alias downleftless  corner bottom-left resize:screenSizeX/2.515;screenSizeY/2
+alias downrightless corner bottom-right resize:screenSizeX/2.515;screenSizeY/2
+
+alias center        move screenOriginX+screenSizeX*0.05;screenOriginY+screenSizeY*0.05 screenSizeX*0.9;screenSizeY*0.9
+alias high          move screenOriginX+screenSizeX*0.05;screenOriginY+screenSizeY*0.005 screenSizeX*0.9;screenSizeY*0.98
+alias full          move screenOriginX;screenOriginY screenSizeX;screenSizeY
+
+
+
+layout iterm-chrome 'iTerm' ${lefthalf}
+layout iterm-chrome 'Google Chrome' ${righthalf}
+alias sq-iterm-chrome sequence layout iterm-chrome
+
+layout iterm-chrome_most-less 'iTerm' ${leftmost}
+layout iterm-chrome_most-less 'Google Chrome' ${rightless}
+alias sq-iterm-chrome_most-less sequence layout iterm-chrome_most-less
+
+layout iterm-chrome_less-most 'iTerm' ${leftless}
+layout iterm-chrome_less-most 'Google Chrome' ${rightmost}
+alias sq-iterm-chrome_less-most sequence layout iterm-chrome_less-most
+
+layout iterm-chrome_down-up 'iTerm' ${downhalf}
+layout iterm-chrome_down-up 'Google Chrome' ${uphalf}
+alias sq-iterm-chrome_down-up sequence layout iterm-chrome_down-up
+
+layout iterm-chrome_downmost-upless 'iTerm' ${downmost}
+layout iterm-chrome_downmost-upless 'Google Chrome' ${upless}
+alias sq-iterm-chrome_downmost-upless sequence layout iterm-chrome_downmost-upless
+
+layout iterm-chrome_downless-upmost 'iTerm' ${downless}
+layout iterm-chrome_downless-upmost 'Google Chrome' ${upmost}
+alias sq-iterm-chrome_downless-upmost sequence layout iterm-chrome_downless-upmost
+
+layout chrome-todo-edit 'Google Chrome' ${leftmost}
+layout chrome-todo-edit 'VimR' ${uprightless}
+layout chrome-todo-edit 'Wunderlist' ${downrightless}
+alias sq-chrome-todo-edit sequence layout chrome-todo-edit
+
+layout chromehalf-todo-edit 'Google Chrome' ${lefthalf}
+layout chromehalf-todo-edit 'VimR' ${upright}
+layout chromehalf-todo-edit 'Wunderlist' ${downright}
+alias sq-chromehalf-todo-edit sequence layout chromehalf-todo-edit
+
+
+
+bind left:${2000} chain ${lefthalf} | ${leftmost} | ${leftless}
+bind right:${2000} chain ${righthalf} | ${rightmost} | ${rightless}
+bind up:${2000} chain ${uphalf} | ${upmost} | ${upless}
+bind down:${2000} chain ${downhalf} | ${downmost} | ${downless}
+bind space:${2000} chain ${center} | ${high} | ${full}
+bind /:${2000} chain ${upleft} | ${upright} | ${downleft} | ${downright} | ${upleftless} | ${uprightless} | ${downleftless} | ${downrightless}
+
+bind ,:${2000} throw 0
+bind .:${2000} throw 1
+
+bind 0:${2000} chain ${sq-iterm-chrome} |  ${sq-iterm-chrome_most-less} | ${sq-iterm-chrome_less-most} | ${sq-iterm-chrome_down-up} | ${sq-iterm-chrome_downmost-upless} | ${sq-iterm-chrome_downless-upmost}
+bind 9:${2000} chain ${sq-chrome-todo-edit} | ${sq-chromehalf-todo-edit}
+
+bind t:${2000} sequence shell '/usr/bin/open -a /Applications/iTerm.app' > focus 'iTerm'
+bind w:${2000} sequence shell '/usr/bin/open -a /Applications/Wunderlist.app' > focus 'Wunderlist'
+bind y:${2000} sequence shell '/usr/bin/open -a /Applications/MobyDickClient.app' > focus 'MobyDickClienti'
+bind m:${2000} sequence shell '/usr/bin/open -a /Applications/Mail.app' > focus 'Mail'
+bind v:${2000} sequence shell '/usr/bin/open -a /Applications/TeamViewer.app' > focus 'TeamViewer'
+bind e:${2000} sequence shell '/usr/bin/open -a /Applications/VimR.app' > focus 'VimR'
+bind k:${2000} sequence shell '/usr/bin/open -a /Applications/KeePassX.app' > focus 'KeePassX'
+bind s:${2000} sequence shell '/usr/bin/open -a /Applications/Spotify.app' > focus 'Spotify'
+bind r:${2000} focus 'Microsoft Remote Desktop'
+bind c:${2000} focus 'Google Chrome'
+
+bind delete:${2000} shell "/usr/bin/open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+
+bind ]:${2000} shell '~/work/git/github/mute-answercall/mute-answer.sh playpause'
+bind return:${2000} shell '~/work/git/github/mute-answercall/mute-answer.sh pauseanswer'
+
+bind esc:${2000} relaunch
