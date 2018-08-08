@@ -29,3 +29,11 @@ setopt hist_reduce_blanks
 setopt hist_verify
 setopt inc_append_history
 setopt share_history
+
+ntp=$(cat ~/.corpntp)
+if ping -c 1 -t 1 $ntp &> /dev/null
+then
+  source ~/.zshproxy
+else
+  :
+fi
