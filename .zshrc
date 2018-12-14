@@ -1,4 +1,4 @@
-export ZSH="/Users/uidq7337/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -30,9 +30,11 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-ntp=$(cat ~/.corpntp)
-if ping -c 1 -t 1 $ntp &> /dev/null
-then
+CORPNTP=$(cat ~/.corpntp)
+CORPSSID=$(cat ~/.corpssid)
+SSID=$(networksetup -getairportnetwork en0 | cut -d ' ' -f 4)
+
+if [[ "$SSID" != "$CORPSSID" ]] && ping -c 1 -t 1 $CORPNTP &> /dev/null; then
   source ~/.zshproxy
 else
   :
