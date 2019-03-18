@@ -16,6 +16,9 @@ source $ZSH/oh-my-zsh.sh
 # ALIAS SETTING
 alias a=adfs-cli-macos
 
+alias ctxkube=/usr/local/Cellar/kubectx/0.6.2/bin/kubectx
+alias nskube=/usr/local/Cellar/kubectx/0.6.2/bin/kubens
+
 zstyle ':completion:*:ssh:*' hosts off
 
 # HISTORY
@@ -34,8 +37,8 @@ CORPNTP=$(cat ~/.corpntp)
 CORPSSID=$(cat ~/.corpssid)
 SSID=$(networksetup -getairportnetwork en0 | cut -d ' ' -f 4)
 
-if [[ "$SSID" != "$CORPSSID" ]] && ping -c 1 -t 1 $CORPNTP &> /dev/null; then
-  source ~/.zshproxy
-else
-  :
-fi
+#if [[ "$SSID" != "$CORPSSID" ]] && ping -c 1 -t 1 $CORPNTP &> /dev/null; then
+#  source ~/.zshproxy
+#else
+#  :
+#fi

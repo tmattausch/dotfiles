@@ -74,14 +74,13 @@ bind delete:${2000} chain ${upleft} | ${upright} | ${downleft} | ${downright} | 
 bind ,:${2000} throw 0
 bind .:${2000} throw 1
 
-bind 0:${2000} chain ${sq-iterm-chrome} |  ${sq-iterm-chrome_most-less} | ${sq-iterm-chrome_less-most} | ${sq-iterm-chrome_down-up} | ${sq-iterm-chrome_downmost-upless} | ${sq-iterm-chrome_downless-upmost}
+bind p:${2000} chain ${sq-iterm-chrome} |  ${sq-iterm-chrome_most-less} | ${sq-iterm-chrome_less-most} | ${sq-iterm-chrome_down-up} | ${sq-iterm-chrome_downmost-upless} | ${sq-iterm-chrome_downless-upmost}
 
 bind t:${2000} focus 'iTerm2'
 bind e:${2000} focus 'Code'
 bind c:${2000} focus 'Google Chrome'
-bind m:${2000} focus 'Spotify'
 bind o:${2000} focus 'Microsoft Outlook'
-bind s:${2000} focus 'Skype for Business'
+bind m:${2000} focus 'Spotify'
 bind x:${2000} focus 'Microsoft Teams'
 
 
