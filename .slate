@@ -80,8 +80,9 @@ bind t:${2000} focus 'iTerm2'
 bind e:${2000} focus 'Code'
 bind c:${2000} focus 'Google Chrome'
 bind o:${2000} focus 'Microsoft Outlook'
+bind return:${2000} focus 'Things'
 bind m:${2000} focus 'Spotify'
 bind x:${2000} focus 'Microsoft Teams'
-
+bind s:${2000} focus 'Slack'
 
 bind esc:${2000} relaunch

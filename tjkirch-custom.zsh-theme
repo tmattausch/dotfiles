@@ -18,9 +18,9 @@ function prompt_char {
 }
 function aws_name {
     adfsprofile=$(cat ~/.aws/current_profile |  xargs)
-    echo "%{$fg[yellow]%}[$adfsprofile]%{$reset_color%}"
+    echo "%{$FG[012]%}[$adfsprofile]%{$reset_color%}"
 }
 
-PROMPT='%{$FG[009]%}%n%{$reset_color%}@%{$FG[010]%}%m%{$reset_color%}: %{$FG[012]%}%~%{$reset_color%}$(git_prompt_info) $(aws_name)
+PROMPT='%{$FG[009]%}%n%{$reset_color%}@%{$FG[010]%}%m%{$reset_color%}: %{$FG[011]%}%~%{$reset_color%}$(git_prompt_info) $(aws_name)
 %_☃ → '
 RPROMPT='%{$FG[010]%}[%*]%{$reset_color%}'
