@@ -27,8 +27,6 @@ alias kctx="kubectx"
 alias ctxkube="kubectx"
 alias nskube="kubens"
 
-alias ko="kubectl --kubeconfig ~/.kube/kubeonprem.conf"
-
 zstyle ':completion:*:ssh:*' hosts off
 
 # HISTORY
@@ -51,13 +49,3 @@ setopt autolist
 unsetopt listambiguous
 setopt NO_beep
 setopt ALWAYS_LAST_PROMPT
-
-CORPNTP=$(cat ~/.corpntp)
-CORPSSID=$(cat ~/.corpssid)
-SSID=$(networksetup -getairportnetwork en0 | cut -d ' ' -f 4)
-
-#if [[ "$SSID" != "$CORPSSID" ]] && ping -c 1 -t 1 $CORPNTP &> /dev/null; then
-#  source ~/.zshproxy
-#else
-#  :
-#fi
